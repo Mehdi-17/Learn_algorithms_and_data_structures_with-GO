@@ -1,4 +1,4 @@
-# Learn_algorithms_and_data_structures_with-GO
+# Learn algorithms and data structures using Go (Golang)
 Algorithms and data structures implemented in Go
 
 ## Algorithms
