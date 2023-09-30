@@ -19,7 +19,7 @@ func TestLinearSearch(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			result := LinearSearch(tc.array, tc.searching)
 			if result != tc.expected {
-				t.Errorf("linearSearch(arr, %v), got : %v, want : 2,  ", tc.searching, result)
+				t.Errorf("linearSearch(arr, %v), got : %v, want : %v,  ", tc.searching, result, tc.expected)
 			}
 		})
 	}
