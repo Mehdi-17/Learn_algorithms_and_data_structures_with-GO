@@ -6,3 +6,6 @@
 
 ### Sort
 - [Bubble Sort](https://github.com/Mehdi-17/Learn_algorithms_and_data_structures_with-GO/tree/main/algorithms/sort/bubbleSort)
+
+## Data Structures
+- [Linked List] (https://github.com/Mehdi-17/Learn_algorithms_and_data_structures_with-GO/tree/main/dataStructures/linkedList)
