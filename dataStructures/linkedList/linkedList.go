@@ -1,6 +1,6 @@
 package linkedList
 
-import "log"
+import "errors"
 
 type Node struct {
 	value   rune
@@ -15,11 +15,11 @@ func createNode(value rune) *Node {
 	}
 }
 
-// appendNode: add a node to the end of the list and return the head
-func appendNode(head *Node, value rune) *Node {
+// appendNode: add a node to the end of the list and return the added Node
+func appendNode(head *Node, value rune) (*Node, error) {
 	newNode := createNode(value)
 	if head == nil {
-		return newNode
+		return nil, errors.New("you have to give a head or create one with createNode function")
 	}
 
 	currentNode := head
@@ -30,24 +30,25 @@ func appendNode(head *Node, value rune) *Node {
 	currentNode.nextVal = newNode
 	newNode.prevVal = currentNode
 
-	return head
+	return newNode, nil
 }
 
-func prependNode(head, newHead *Node) *Node {
+// prependNode: add a new head to the linked list and return this head
+func prependNode(head, newHead *Node) (*Node, error) {
 	if head == nil {
-		log.Fatal("There is no head.")
+		return nil, errors.New("there is no head")
 	}
 
 	head.prevVal = newHead
 	newHead.nextVal = head
 
-	return newHead
+	return newHead, nil
 }
 
-// insertNode: insert a new Node
-func insertNode(insertAfterNode, nodeToAdd *Node) *Node {
+// insertNode: insert a new Node and returning the added node
+func insertNode(insertAfterNode, nodeToAdd *Node) (*Node, error) {
 	if insertAfterNode == nil {
-		log.Fatal("There is no Node to insert after.")
+		return nil, errors.New("there is no Node to insert after")
 	}
 
 	insertBeforeNode := insertAfterNode.nextVal
@@ -57,13 +58,18 @@ func insertNode(insertAfterNode, nodeToAdd *Node) *Node {
 	insertBeforeNode.prevVal = nodeToAdd
 	insertAfterNode.nextVal = nodeToAdd
 
-	return nodeToAdd
+	return nodeToAdd, nil
 }
 
 // deleteNode: delete a node
 func deleteNode(nodeToDelete *Node) {
 	prevNode := nodeToDelete.prevVal
 	nextNode := nodeToDelete.nextVal
+
+	if prevNode == nil {
+		nextNode.prevVal = nil
+		nodeToDelete.nextVal = nil
+	}
 
 	prevNode.nextVal = nextNode
 	nextNode.prevVal = prevNode
