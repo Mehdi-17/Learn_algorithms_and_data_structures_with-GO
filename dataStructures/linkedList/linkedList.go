@@ -34,11 +34,12 @@ func appendNode(head *Node, value rune) (*Node, error) {
 }
 
 // prependNode: add a new head to the linked list and return this head
-func prependNode(head, newHead *Node) (*Node, error) {
+func prependNode(head *Node, newValue rune) (*Node, error) {
 	if head == nil {
 		return nil, errors.New("there is no head")
 	}
 
+	newHead := createNode(newValue)
 	head.prevVal = newHead
 	newHead.nextVal = head
 

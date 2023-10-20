@@ -18,5 +18,12 @@ func TestLinkedList(t *testing.T) {
 		t.Errorf("error in appended node previous value, want %c, got : %c", head.value, appendedNode.prevVal.value)
 	}
 
+	newHead, _ := prependNode(head, 'Z')
+	if newHead == nil || newHead.value != 'Z' {
+		t.Errorf("error with the new head value, want : 'Z', got : %c", newHead.value)
+	}
+	if newHead.nextVal != head {
+		t.Errorf("error with the nex node of the new head. Want : %c, got : %c", head.value, newHead.nextVal.value)
+	}
 	//TODO implement next tests
 }
