@@ -32,3 +32,5 @@ func TestPrependNode(t *testing.T) {
 		t.Errorf("error with the nex node of the new head. Want : %c, got : %c", head.value, newHead.nextVal.value)
 	}
 }
+
+//TODO: Add tests
