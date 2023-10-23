@@ -47,10 +47,16 @@ func prependNode(head *Node, newValue rune) (*Node, error) {
 }
 
 // insertNode: insert a new Node and returning the added node
-func insertNode(insertAfterNode, nodeToAdd *Node) (*Node, error) {
+func insertNode(insertAfterNode *Node, valueToInsert rune) (*Node, error) {
 	if insertAfterNode == nil {
 		return nil, errors.New("there is no Node to insert after")
 	}
+
+	if valueToInsert == 0 {
+		return nil, errors.New("there is no value to insert")
+	}
+
+	nodeToAdd := createNode(valueToInsert)
 
 	insertBeforeNode := insertAfterNode.nextVal
 

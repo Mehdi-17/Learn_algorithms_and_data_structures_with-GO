@@ -20,6 +20,14 @@ func TestAppendNode(t *testing.T) {
 	if appendedNode.prevVal != head {
 		t.Errorf("error in appended node previous value, want %c, got : %c", head.value, appendedNode.prevVal.value)
 	}
+
+	thirdNode, _ := appendNode(head, 'C')
+	if thirdNode.value != 'C' {
+		t.Errorf("error in appended node value, want 'C', got : %c", thirdNode.value)
+	}
+	if thirdNode.prevVal != appendedNode {
+		t.Errorf("error in appended node previous value, want %c, got : %c", appendedNode.value, thirdNode.prevVal.value)
+	}
 }
 
 func TestPrependNode(t *testing.T) {
@@ -33,4 +41,15 @@ func TestPrependNode(t *testing.T) {
 	}
 }
 
-//TODO: Add tests
+func TestInsertNode(t *testing.T) {
+	head := createNode('A')
+	secondNode, _ := appendNode(head, 'B')
+	thirdNode, _ := appendNode(head, 'C')
+
+	insertedNode, _ := insertNode(secondNode, 'I')
+	if insertedNode.prevVal != secondNode || insertedNode.nextVal != thirdNode {
+		t.Errorf("Error during the insert, next and/or prev val are wrong.")
+	}
+}
+
+//Add test cases with failure + get err rather than _ on existing tests
