@@ -76,6 +76,13 @@ func deleteNode(nodeToDelete *Node) {
 	if prevNode == nil {
 		nextNode.prevVal = nil
 		nodeToDelete.nextVal = nil
+		return
+	}
+
+	if nextNode == nil {
+		nodeToDelete.prevVal = nil
+		prevNode.nextVal = nil
+		return
 	}
 
 	prevNode.nextVal = nextNode
