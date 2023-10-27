@@ -30,6 +30,13 @@ func TestAppendNode(t *testing.T) {
 	}
 }
 
+func TestAppendNode_returnErr(t *testing.T) {
+	appendedNode, err := appendNode(nil, 'B')
+	if err == nil || appendedNode != nil {
+		t.Errorf("Call appendNode with nil head should throw an error.")
+	}
+}
+
 func TestPrependNode(t *testing.T) {
 	head := createNode('A')
 	newHead, _ := prependNode(head, 'Z')
