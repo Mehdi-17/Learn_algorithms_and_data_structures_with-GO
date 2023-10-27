@@ -58,13 +58,20 @@ func TestDeleteNode(t *testing.T) {
 	thirdNode, _ := appendNode(head, 'C')
 
 	deleteNode(thirdNode)
-	if secondNode.nextVal != nil {
+	if secondNode.nextVal != nil || thirdNode.prevVal != nil || thirdNode.nextVal != nil {
 		t.Errorf("Error during delete, the node is still in the linked list.")
 	}
 }
 
-//TODO: add other specific test cases for insert and delete function :
-// - delete and insert in the middle
-// -delete and insert at the beginning
+func TestDeleteNodeAtTheBeginning(t *testing.T) {
+	head := createNode('A')
+	secondNode, _ := appendNode(head, 'B')
+	_, _ = appendNode(head, 'C')
+
+	deleteNode(head)
+	if secondNode.prevVal != nil || head.prevVal != nil || head.nextVal != nil {
+		t.Errorf("Error during delete, the node is still in the linked list.")
+	}
+}
 
 //TODO: Add test cases with failure + get err rather than _ on existing tests
